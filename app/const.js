@@ -6,3 +6,7 @@ export const TEST3 = 'TEST3';
 export const GUANG_ID = 'GUANG_ID';
 export const GUANG_NAME = 'GUANG_NAME';
 export const GUANG_AGE = 'GUANG_AGE';
+
+//detail
+export const DETAIL_ID = 'DETAIL_ID';
+export const DETAIL_TYPE = 'DETAIL_TYPE';

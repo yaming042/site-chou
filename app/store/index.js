@@ -1,6 +1,3 @@
-/**
- * Created by zhengliuyang on 2018/1/16.
- */
 import {createStore, applyMiddleware,compose} from 'redux';
 // import thunk from 'redux-thunk';
 import rootReducer from '../reducers';

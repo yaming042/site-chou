@@ -5,6 +5,7 @@ module.exports = {
 	entry: {
 		index: './app/index.js',
         admin: './app/admin.js',
+        detail: './app/detail.js',
 	},
 	output: {
 		path: path.resolve(__dirname, 'public/dist'),
@@ -23,7 +24,6 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader!less-loader',
-                exclude: /node_modules/
             },
             {
                 test: /\.less$/,

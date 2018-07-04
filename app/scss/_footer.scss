@@ -1,0 +1,52 @@
+.footer{
+  padding: 20px;
+  font-size: 14px;
+  background: #ffffff;
+
+  .footer-body{
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    .left{
+      float: left;
+      width: 33.33%;
+
+      p{
+        padding: 0 10px;
+      }
+    }
+    .center{
+      float: left;
+      width: 31.33%;
+      margin: 0 1%;
+
+      ul{
+        display: inline-block;
+
+        p{
+          font-weight: bold;
+        }
+
+        li{
+          font-size: 12px;
+          margin: 10px 0;
+
+          &:hover{
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .right{
+      float: left;
+      width: 33.33%;
+
+      img{
+        width: 150px;
+      }
+    }
+  }
+}

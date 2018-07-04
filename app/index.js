@@ -12,12 +12,10 @@ ReactDom.render(
 	<Provider store={store}>
 		<Router history={ browserHistory }>
 			<Route path='/' component={ Base } >
-				<IndexRoute component={ Index.index1 }>逛</IndexRoute>
-				<Route path='/guang' component={ Index.index1 }>逛</Route>
-				<Route path='/chi' component={ Index.index2 }>吃</Route>
-				<Route path='/mai' component={ Index.index3 }>买</Route>
-				<Route path='/wan' component={ Index.index4 }>玩</Route>
-				<Route path='/other' component={ Index.index5 }>其他</Route>
+				<IndexRoute component={ Index.index1 } />
+				<Route path='/type1' component={ Index.index2 } />
+				<Route path='/type2' component={ Index.index3 } />
+				<Route path='/type3' component={ Index.index4 } />
 			</Route>
 		</Router>
 	</Provider>,
