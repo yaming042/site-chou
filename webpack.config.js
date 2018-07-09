@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
 	entry: {
 		index: './app/index.js',
-        admin: './app/admin.js',
+        admin: './admin/index.js',
         detail: './app/detail.js',
 	},
 	output: {
