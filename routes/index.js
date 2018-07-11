@@ -21,4 +21,8 @@ router.get('/other', function(req, res, next) {
   res.render('index', { title: '其他', bundle: '/dist/index_bundle.js' });
 });
 
+router.get('/login', function(req, res, next) {
+    res.render('index', { title: '登录管理后台', bundle: '/dist/login_bundle.js' });
+});
+
 module.exports = router;

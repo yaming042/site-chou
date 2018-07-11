@@ -5,6 +5,7 @@ module.exports = {
 	entry: {
 		index: './app/index.js',
         admin: './admin/index.js',
+        login: './admin/login.js',
         detail: './app/detail.js',
 	},
 	output: {

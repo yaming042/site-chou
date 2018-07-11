@@ -10,7 +10,12 @@ class Eat extends Component{
 
     render(){
         return (
-            <div>Eat</div>
+            <div>
+                <img
+                    src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2156679303,538323769&fm=200&gp=0.jpg"
+                    alt=""/>
+                Eat
+            </div>
         );
     }
 }

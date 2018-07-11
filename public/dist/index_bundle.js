@@ -58,15 +58,15 @@
 
 	var _reactRouter = __webpack_require__(223);
 
-	var _store = __webpack_require__(536);
+	var _store = __webpack_require__(537);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _indexBase = __webpack_require__(542);
+	var _indexBase = __webpack_require__(543);
 
 	var _indexBase2 = _interopRequireDefault(_indexBase);
 
-	var _containers = __webpack_require__(543);
+	var _containers = __webpack_require__(544);
 
 	var Index = _interopRequireWildcard(_containers);
 
@@ -30025,6 +30025,10 @@
 	//enjoy
 	var SET_ENJOY_DATA = exports.SET_ENJOY_DATA = 'SET_ENJOY_DATA';
 
+	//login
+	var SET_USER_NAME = exports.SET_USER_NAME = 'SET_USER_NAME';
+	var SET_USER_PASSWORD = exports.SET_USER_PASSWORD = 'SET_USER_PASSWORD';
+
 /***/ }),
 /* 289 */,
 /* 290 */,
@@ -30320,7 +30324,8 @@
 /* 519 */,
 /* 520 */,
 /* 521 */,
-/* 522 */
+/* 522 */,
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30335,7 +30340,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _search = __webpack_require__(523);
+	var _search = __webpack_require__(524);
 
 	var _search2 = _interopRequireDefault(_search);
 
@@ -30421,7 +30426,7 @@
 	exports.default = Header;
 
 /***/ }),
-/* 523 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30493,8 +30498,8 @@
 	exports.default = Search;
 
 /***/ }),
-/* 524 */,
-/* 525 */
+/* 525 */,
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30511,19 +30516,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactSwipeable = __webpack_require__(526);
+	var _reactSwipeable = __webpack_require__(527);
 
 	var _reactSwipeable2 = _interopRequireDefault(_reactSwipeable);
 
-	var _lodash = __webpack_require__(528);
+	var _lodash = __webpack_require__(529);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _lodash3 = __webpack_require__(529);
+	var _lodash3 = __webpack_require__(530);
 
 	var _lodash4 = _interopRequireDefault(_lodash3);
 
-	var _resizeObserverPolyfill = __webpack_require__(530);
+	var _resizeObserverPolyfill = __webpack_require__(531);
 
 	var _resizeObserverPolyfill2 = _interopRequireDefault(_resizeObserverPolyfill);
 
@@ -31752,7 +31757,7 @@
 	exports.default = ImageGallery;
 
 /***/ }),
-/* 526 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31767,7 +31772,7 @@
 
 	var React = __webpack_require__(1);
 	var PropTypes = __webpack_require__(186);
-	var DetectPassiveEvents = __webpack_require__(527).default;
+	var DetectPassiveEvents = __webpack_require__(528).default;
 
 	function getInitialState() {
 	  return {
@@ -32109,7 +32114,7 @@
 	module.exports = Swipeable;
 
 /***/ }),
-/* 527 */
+/* 528 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32143,7 +32148,7 @@
 	exports.default = detectPassiveEvents;
 
 /***/ }),
-/* 528 */
+/* 529 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -32589,7 +32594,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 529 */
+/* 530 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -32973,7 +32978,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 530 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {(function (global, factory) {
@@ -34012,16 +34017,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 531 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(532);
+	var content = __webpack_require__(533);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(534)(content, {});
+	var update = __webpack_require__(535)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -34038,10 +34043,10 @@
 	}
 
 /***/ }),
-/* 532 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(533)();
+	exports = module.exports = __webpack_require__(534)();
 	// imports
 
 
@@ -34052,7 +34057,7 @@
 
 
 /***/ }),
-/* 533 */
+/* 534 */
 /***/ (function(module, exports) {
 
 	/*
@@ -34108,7 +34113,7 @@
 
 
 /***/ }),
-/* 534 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -34360,7 +34365,7 @@
 
 
 /***/ }),
-/* 535 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34451,7 +34456,7 @@
 	exports.default = Footer;
 
 /***/ }),
-/* 536 */
+/* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34462,7 +34467,7 @@
 
 	var _redux = __webpack_require__(197);
 
-	var _reducers = __webpack_require__(537);
+	var _reducers = __webpack_require__(538);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -34477,7 +34482,7 @@
 	exports.default = store;
 
 /***/ }),
-/* 537 */
+/* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34492,19 +34497,19 @@
 
 	var _guang2 = _interopRequireDefault(_guang);
 
-	var _chi = __webpack_require__(538);
+	var _chi = __webpack_require__(539);
 
 	var _chi2 = _interopRequireDefault(_chi);
 
-	var _mai = __webpack_require__(539);
+	var _mai = __webpack_require__(540);
 
 	var _mai2 = _interopRequireDefault(_mai);
 
-	var _wan = __webpack_require__(540);
+	var _wan = __webpack_require__(541);
 
 	var _wan2 = _interopRequireDefault(_wan);
 
-	var _other = __webpack_require__(541);
+	var _other = __webpack_require__(542);
 
 	var _other2 = _interopRequireDefault(_other);
 
@@ -34521,7 +34526,7 @@
 	exports.default = rootReducer;
 
 /***/ }),
-/* 538 */
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34583,7 +34588,7 @@
 	exports.default = chiReducer;
 
 /***/ }),
-/* 539 */
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34645,7 +34650,7 @@
 	exports.default = maiReducer;
 
 /***/ }),
-/* 540 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34707,7 +34712,7 @@
 	exports.default = wanReducer;
 
 /***/ }),
-/* 541 */
+/* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34769,7 +34774,7 @@
 	exports.default = otherReducer;
 
 /***/ }),
-/* 542 */
+/* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34784,11 +34789,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _header = __webpack_require__(522);
+	var _header = __webpack_require__(523);
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _footer = __webpack_require__(535);
+	var _footer = __webpack_require__(536);
 
 	var _footer2 = _interopRequireDefault(_footer);
 
@@ -34829,7 +34834,7 @@
 	exports.default = Base;
 
 /***/ }),
-/* 543 */
+/* 544 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34843,27 +34848,27 @@
 
 	var _reactRedux = __webpack_require__(184);
 
-	var _actions = __webpack_require__(544);
+	var _actions = __webpack_require__(545);
 
 	var Actions = _interopRequireWildcard(_actions);
 
-	var _index = __webpack_require__(545);
+	var _index = __webpack_require__(546);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(548);
+	var _index3 = __webpack_require__(549);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(549);
+	var _index5 = __webpack_require__(550);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(550);
+	var _index7 = __webpack_require__(551);
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(551);
+	var _index9 = __webpack_require__(552);
 
 	var _index10 = _interopRequireDefault(_index9);
 
@@ -34885,7 +34890,7 @@
 	var index5 = exports.index5 = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_index10.default);
 
 /***/ }),
-/* 544 */
+/* 545 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34923,7 +34928,7 @@
 	}
 
 /***/ }),
-/* 545 */
+/* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34940,15 +34945,15 @@
 
 	var _reactRouter = __webpack_require__(223);
 
-	var _bannerBox = __webpack_require__(546);
+	var _bannerBox = __webpack_require__(547);
 
 	var _bannerBox2 = _interopRequireDefault(_bannerBox);
 
-	var _search = __webpack_require__(523);
+	var _search = __webpack_require__(524);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _star = __webpack_require__(547);
+	var _star = __webpack_require__(548);
 
 	var _star2 = _interopRequireDefault(_star);
 
@@ -35453,7 +35458,7 @@
 	exports.default = Index1;
 
 /***/ }),
-/* 546 */
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35468,11 +35473,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactImageGallery = __webpack_require__(525);
+	var _reactImageGallery = __webpack_require__(526);
 
 	var _reactImageGallery2 = _interopRequireDefault(_reactImageGallery);
 
-	__webpack_require__(531);
+	__webpack_require__(532);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35530,7 +35535,7 @@
 	exports.default = BannerBox;
 
 /***/ }),
-/* 547 */
+/* 548 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35585,7 +35590,7 @@
 	exports.default = StarNum;
 
 /***/ }),
-/* 548 */
+/* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35639,7 +35644,7 @@
 	exports.default = Index2;
 
 /***/ }),
-/* 549 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35693,7 +35698,7 @@
 	exports.default = Index3;
 
 /***/ }),
-/* 550 */
+/* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35742,7 +35747,7 @@
 	exports.default = Index4;
 
 /***/ }),
-/* 551 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';

@@ -16,3 +16,7 @@ export const SEARCH_VAL = 'SEARCH_VAL';
 
 //enjoy
 export const SET_ENJOY_DATA = 'SET_ENJOY_DATA';
+
+//login
+export const SET_USER_NAME = 'SET_USER_NAME';
+export const SET_USER_PASSWORD = 'SET_USER_PASSWORD';

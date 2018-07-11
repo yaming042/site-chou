@@ -9,6 +9,53 @@
 </head>
 <body>
 <div id="root"></div>
+
+<script>
+    //服务器token失效,自动跳转到登录
+    (function ($) {
+        var _ajax = $.ajax;
+        $.ajax = function (opt) {
+            console.log('in');
+            var fn = {
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                },
+                success: function (data, textStatus) {
+                }
+            };
+            if (opt.error) {
+                fn.error = opt.error;
+            }
+            if (opt.success) {
+                fn.success = opt.success;
+            }
+            var _opt = $.extend(opt, {
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log("not ok");
+                    console.log(document.cookie);
+                    fn.error(XMLHttpRequest, textStatus, errorThrown);
+                },
+                success: function (data, textStatus) {
+                    console.log("ok");
+                    var tempData = ((typeof data ) == 'string') ? eval('(' + data + ')') : data;
+                    var cookie = {};
+                    console.log(document.cookie);
+                    var cookieArr = document.cookie.split(';');
+                    cookieArr.map((data, k) => {
+                        var arr = data.split('=');
+                        cookie[arr[0]] = arr[1];
+                    });
+
+                    if (tempData.code == 10114 || tempData.code == 10122) {
+
+                    }
+                    fn.success(data, textStatus);
+                }
+            });
+            _ajax(_opt);
+        };
+    })(jQuery);
+</script>
+
 <script src=<%= bundle %> ></script>
 </body>
 </html>

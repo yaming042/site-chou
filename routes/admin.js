@@ -1,14 +1,20 @@
 var express = require('express');
+var utils = require('../controller/utils');
+var configs = require('../controller/config.json');
 var router = express.Router();
 
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//     res.render('admin', { title: '管理后台', bundle: '/dist/admin_bundle.js' });
-// });
+var secret = 'test';
 
 router.get('/*', function (req, res, next) {
-    console.log(req.cookies);
-    next();
+    //后台说有请求都必须路过这里
+    var cook = req.cookies.web_tian || '';
+
+    if( cook && cook === req.session.token){//已经登录
+        next();
+    }else{
+        res.redirect('/login');
+        return;
+    }
 });
 
 router.get('/', function (req, res, next) {

@@ -58,7 +58,15 @@ export default class EnjoyTable extends Component{
 
     //获取enjoy数据
     getData(){
-        alert('获取数据列表');
+        console.log('获取数据列表');
+        $.ajax({
+            url: 'http://yaming.me/inter/resume_info?name=ren',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            }
+        });
     }
 
     //查看产品详情
@@ -70,7 +78,7 @@ export default class EnjoyTable extends Component{
 
     //获取产品详细数据
     selectProduct(id){
-        alert('id is: ' + id);
+        console.log('id is: ' + id);
     }
 
     render(){
