@@ -39,12 +39,13 @@
                     var cookieArr = document.cookie.split(';');
                     cookieArr.map((data, k) => {
                         var arr = data.split('=');
-                        cookie[arr[0]] = arr[1];
+                        var k = $.trim(arr[0]);
+                        cookie[k] = arr[1];
                     });
-console.log('result', tempData);
+
                     if (tempData.code == 10114 || tempData.code == 10122) {//这里判断token是否过期，10114，10122代表token过期
                         $.post('/api/authorLoginIn', {data: cookie['web_tian']}, (data) => {
-                            console.log(data);
+
                             if (data.status != 'success') {
                                 window.location.href = '/login';
                             }
