@@ -133,8 +133,159 @@
       }
     }
   }
+
 }
 
+//弹框
+.dialog-container{
+  &>div{
+    margin-top: -292px;
+
+    &>div{
+      height: 600px;
+    }
+  }
+
+  .dialog-main{
+    height: 100%;
+    padding: 12px 0 0;
+
+    .dialog-header{
+      display: flex;
+      height: 36px;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      margin-bottom: 12px;
+      padding: 0 24px;
+
+      .title{
+        font-weight: bold;
+
+        .iconfont{
+          color: #006064;
+          padding-right: 8px;
+          font-weight: normal;
+        }
+      }
+
+      .option{
+        position: absolute;
+        right: 14px;
+        top: 0px;
+
+        .iconfont{
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .dialog-body{
+      height: 468px;
+      padding: 0 24px;
+      overflow-y: auto;
+
+      .left{
+        float: left;
+        width: 50%;
+      }
+
+      .right{
+        float: left;
+        width: 45%;
+        margin-left: 5%;
+
+        //上传图片
+        .upload-btn{
+          text-align: center;
+          color: #ccc;
+
+          .iconfont{
+            font-size: 48px;
+            color: #ccc;
+          }
+
+          &:hover{
+            cursor: pointer;
+
+            .iconfont{
+              color: #000;
+            }
+
+            p{
+              color: #000;
+            }
+          }
+        }
+
+        .title{
+          margin: 10px 0;
+          font-size: 14px;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #ccc;
+        }
+
+        //图片预览
+        .preview{
+          height: 350px;
+          overflow-y: auto;
+          padding: 0 10px 5px;
+
+          .preview-item{
+            position: relative;
+            height: 200px;
+            margin: 0 0 10px;
+
+            img{
+              width: 100%;
+              height: 100%;
+              vertical-align: middle;
+            }
+
+            .delete-pre{
+              display: none;
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              left: 0;
+              top: 0;
+              text-align: center;
+              padding-top: 45px;
+              background-color: rgba(0,0,0,0.3);
+
+              .iconfont{
+                font-size: 48px;
+              }
+            }
+
+            &:hover{
+              cursor: pointer;
+
+              .delete-pre{
+                display: block;
+              }
+            }
+          }
+        }
+      }
+
+      .input-row{
+        margin-bottom: 16px;
+      }
+    }
+
+    .dialog-footer{
+      text-align: right;
+      margin-top: 12px;
+      padding: 12px 24px 12px 0;
+      border-top: 1px solid #ccc;
+    }
+
+
+  }
+}
 .load-more{
   height: 100%;
   display: flex;

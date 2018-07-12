@@ -1,6 +1,13 @@
 var webpack = require("webpack");
 var path = require('path');
 
+var productionEnv = new webpack.DefinePlugin({
+    "process.env": {
+        NODE_ENV: JSON.stringify("production")
+        // NODE_ENV: JSON.stringify("development")
+    }
+});
+
 module.exports = {
 	entry: {
 		index: './app/index.js',
@@ -33,5 +40,17 @@ module.exports = {
             },
         ],
     },
+    plugins: [productionEnv,
+        new webpack.DefinePlugin({
+            'process.env':{
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress:{
+                warnings: true
+            }
+        })
+    ]
     
 }

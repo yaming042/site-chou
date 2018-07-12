@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
 import * as events from '../../Events';
@@ -37,13 +38,29 @@ export default class EnjoyDialog extends Component{
                     modal={false}
                     open={this.state.open}
                     onRequestClose={this.dialogClose.bind(this)}
-                    autoScrollBodyContent={true}
+                    contentClassName='dialog-container'
                     bodyStyle={ styles.dialog.bodyStyle }
                     contentStyle={ styles.dialog.contentStyle }
+                    autoDetectWindowHeight={false}
                 >
-                    <div className="dialog-conent">
-                        <h3>南锣鼓巷</h3>
-                        <p>这是弹框内容</p>
+                    <div className="dialog-main">
+                        <div className="dialog-header">
+                            <div className="title">
+                                南锣鼓巷
+                            </div>
+                            <div className="option">
+                                <i className='iconfont icon-guanbi' onClick={ this.dialogClose.bind(this) }></i>
+                            </div>
+                        </div>
+
+                        <div className="dialog-body clearfix">
+                            <p>这是弹框内容</p>
+                        </div>
+
+                        <div className="dialog-footer">
+                            <FlatButton label="取消" style={ styles.formInput.caneclBtn } onClick={ this.dialogClose.bind(this) }/>
+                            <FlatButton label="完成" style={ styles.formInput.confirmBtn } onClick={ this.dialogClose.bind(this) } />
+                        </div>
                     </div>
                 </Dialog>
             </div>

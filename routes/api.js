@@ -16,7 +16,7 @@ router.get('/login', function (req, res, next) {
 
         req.session.token = token;
         res.cookie('web_tian', token, {
-            maxAge: 1000*60,
+            maxAge: 1000*60*15,
             httpOnly: false,
             path: '/',
             secure: false
