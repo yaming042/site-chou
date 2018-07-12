@@ -3,8 +3,6 @@ var utils = require('../controller/utils');
 var configs = require('../controller/config.json');
 var router = express.Router();
 
-var secret = 'test';
-
 router.get('/*', function (req, res, next) {
     //后台说有请求都必须路过这里
     var cook = req.cookies.web_tian || '';

@@ -11,11 +11,11 @@
 <div id="root"></div>
 
 <script>
+
     //服务器token失效,自动跳转到登录
     (function ($) {
         var _ajax = $.ajax;
         $.ajax = function (opt) {
-            console.log('in');
             var fn = {
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                 },
@@ -30,24 +30,27 @@
             }
             var _opt = $.extend(opt, {
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log("not ok");
-                    console.log(document.cookie);
                     fn.error(XMLHttpRequest, textStatus, errorThrown);
                 },
                 success: function (data, textStatus) {
-                    console.log("ok");
                     var tempData = ((typeof data ) == 'string') ? eval('(' + data + ')') : data;
                     var cookie = {};
-                    console.log(document.cookie);
+
                     var cookieArr = document.cookie.split(';');
                     cookieArr.map((data, k) => {
                         var arr = data.split('=');
                         cookie[arr[0]] = arr[1];
                     });
-
-                    if (tempData.code == 10114 || tempData.code == 10122) {
-
+console.log('result', tempData);
+                    if (tempData.code == 10114 || tempData.code == 10122) {//这里判断token是否过期，10114，10122代表token过期
+                        $.post('/api/authorLoginIn', {data: cookie['web_tian']}, (data) => {
+                            console.log(data);
+                            if (data.status != 'success') {
+                                window.location.href = '/login';
+                            }
+                        });
                     }
+
                     fn.success(data, textStatus);
                 }
             });

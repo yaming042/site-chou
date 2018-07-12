@@ -14,19 +14,38 @@ router.get('/login', function (req, res, next) {
         var password = configs.prefix + '+' + new Date().getTime();
         var token = utils.encrypt(password, configs.secret);
 
-
-
         req.session.token = token;
         res.cookie('web_tian', token, {
             maxAge: 1000*60,
-            httpOnly: true,
+            httpOnly: false,
             path: '/',
             secure: false
         });
-        console.log(req.session);
+
         res.send(body);
     });
 });
 
+router.get('/json', function (req, res, next) {
+    var data = {
+        code: '10114',
+        name:"tim"
+    };
+    res.send(data);
+});
+
+router.post('/authorLoginIn', function (req, res, next) {
+    var result = {
+        status: ''
+    };
+    var cook = req.session.token;
+    if(cook && cook == req.body.data){
+        result.status = 'success';
+    }else{
+        result.status = 'failed';
+    }
+    res.send(result);
+
+});
 
 module.exports = router;

@@ -60,11 +60,11 @@ export default class EnjoyTable extends Component{
     getData(){
         console.log('获取数据列表');
         $.ajax({
-            url: 'http://yaming.me/inter/resume_info?name=ren',
-            type: 'get',
+            url: '/api/json',
+            type: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                console.log('tableEnjoy', data);
             }
         });
     }
