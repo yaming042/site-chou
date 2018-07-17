@@ -143,11 +143,11 @@ export default class UploadBox extends Component{
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        if(xmlhttp!=null){
-            serverUrl = 'http://47.94.97.168:8082/getsignature'
+        if(xmlhttp != null){
+            let serverUrl = 'http://47.94.97.168:8082/getsignature';
             xmlhttp.open( "GET", serverUrl, false );
             xmlhttp.send( null );
-            return xmlhttp.responseText
+            return xmlhttp.responseText;
         }else{
             alert("Your browser does not support XMLHTTP.");
         }
