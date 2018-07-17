@@ -79,9 +79,7 @@ export default class UploadBox extends Component{
                     files: data.concat(oldData),
                 });
             }, 100)
-            setTimeout(() => {
-                console.log(this.state.files);
-            },500);
+
         });
 
         //准备上传是的设置
@@ -100,9 +98,9 @@ export default class UploadBox extends Component{
 
         //上传进度条
         uploader.bind('UploadProgress', (up, file) => {
-            $('#' + file.id).find(".processBar").css(display, 'block');
+            $('#' + file.id).find(".processBar").css('display', 'block');
             $('#' + file.id).find(".percent").html(file.percent + '%');
-            $('#' + file.id).find('.bg').css({width: file.percent + '%'});
+            $('#' + file.id).find('.bg').css({'width': file.percent + '%'});
 
         });
 
