@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import store from '../../store';
+import * as TYPE from '../../../app/const';
+
 import * as events from '../../Events';
 
 export default class EnjoyTable extends Component{
@@ -78,6 +81,10 @@ export default class EnjoyTable extends Component{
 
     //获取产品详细数据
     selectProduct(id){
+        store.dispatch({
+            type: TYPE.SET_ENJOY_ID,
+            val: id
+        });
         console.log('id is: ' + id);
     }
 

@@ -22,12 +22,15 @@ if (typeof Object.assign != 'function') {
 }
 
 const initState = {
+    productId: '',
     productData: {},
 
 };
 
 function enjoyReducer(state=initState, action){
     switch(action.type){
+        case TYPE.SET_ENJOY_ID:
+            return Object.assign({}, state, {productId: action.val});
         case TYPE.SET_ENJOY_DATA:
             return Object.assign({}, state, {productData: action.val});
         default:

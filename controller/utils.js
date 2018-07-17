@@ -43,4 +43,4 @@ exports.funcGetSetToken = function (url, data, callback) {
             }
         }
     });
-}
+};

@@ -4,6 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 
+import UploadBox from '../piece/upload';
+
 import styles from '../../style';
 import * as events from "../../Events";
 
@@ -34,6 +36,9 @@ export default class Add extends Component{
 
     //提交
     confirmClose(){
+        events.customEvents.emit(events.UPLOAD_IMAGE);
+
+
         $("#name").focus().blur();
         $("#location").focus().blur();
         $("#introduce").focus().blur();
@@ -185,29 +190,7 @@ export default class Add extends Component{
                                 </div>
                             </div>
                             <div className="right">
-                                <div className="upload-btn">
-                                    <i className='iconfont icon-ai-up-img'></i>
-                                    <p>上传图片</p>
-                                </div>
-                                <div className='title'>图片预览</div>
-                                <div className='preview'>
-                                    <div className="preview-item">
-                                        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2156679303,538323769&fm=200&gp=0.jpg" alt=""/>
-                                        <div className="delete-pre">
-                                            <i className='iconfont icon-guanbi'></i>
-                                            <p>删除</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="preview-item">
-                                        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2156679303,538323769&fm=200&gp=0.jpg" alt=""/>
-                                        <div className="delete-pre">
-                                            <i className='iconfont icon-guanbi'></i>
-                                            <p>删除</p>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <UploadBox />
                             </div>
                         </div>
 

@@ -24,10 +24,13 @@ if (typeof Object.assign != 'function') {
 
 const initState = {
     searchVal: '',
+    type: '',
 };
 
 function searchReducer(state=initState, action){
     switch(action.type){
+        case TYPE.SEARCH_TYPE:
+            return Object.assign({}, state, {type: action.val});
         case TYPE.SEARCH_VAL:
             return Object.assign({}, state, {searchVal: action.val});
         default:

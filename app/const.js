@@ -12,10 +12,12 @@ export const DETAIL_ID = 'DETAIL_ID';
 export const DETAIL_TYPE = 'DETAIL_TYPE';
 
 //search
+export const SEARCH_TYPE = 'SEARCH_TYPE';
 export const SEARCH_VAL = 'SEARCH_VAL';
 
 //enjoy
 export const SET_ENJOY_DATA = 'SET_ENJOY_DATA';
+export const SET_ENJOY_ID = 'SET_ENJOY_ID';
 
 //login
 export const SET_USER_NAME = 'SET_USER_NAME';

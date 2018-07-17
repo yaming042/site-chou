@@ -22,7 +22,13 @@ const styles = {
             height: '600px',
             maxWidth: 'none',
             transform: 'translate(0,50%)'
-        }
+        },
+        bodyStyleDel: {
+            color: '#000',
+            backgroundColor: '#fff',
+            borderRadius: '4px',
+            paddingBottom: '0',
+        },
     },
     //登录
     inputStyle: {

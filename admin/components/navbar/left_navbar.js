@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router';
 
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 
+import store from '../../store';
+import * as TYPE from '../../../app/const';
 
 let SelectableList = makeSelectable(List);
 
@@ -48,6 +50,24 @@ export default class leftNavbar extends Component{
         super(props);
     }
 
+    componentDidMount(){
+        let type = '';
+        if(defaultVal.indexOf('enjoy') > 0){
+            type = 'enjoy';
+        }else if(defaultVal.indexOf('eat') > 0) {
+            type = 'eat';
+        }else{
+            type = 'stroll';
+        }
+        this.setType(type)
+    }
+
+    setType(type){
+        store.dispatch({
+            type: TYPE.SEARCH_TYPE,
+            val: type
+        });
+    }
 
     render(){
         return (
@@ -65,6 +85,7 @@ export default class leftNavbar extends Component{
                         onClick={() => {
                             browserHistory.push('/admin/enjoy');
                             changeDefaultVal();
+                            this.setType('enjoy');
                         }}
                     />
                     <ListItem
@@ -77,6 +98,7 @@ export default class leftNavbar extends Component{
                         onClick={() => {
                             browserHistory.push('/admin/eat');
                             changeDefaultVal();
+                            this.setType('eat');
                         }}
                     />
                     <ListItem
@@ -89,6 +111,7 @@ export default class leftNavbar extends Component{
                         onClick={() => {
                             browserHistory.push('/admin/stroll');
                             changeDefaultVal();
+                            this.setType('stroll');
                         }}
                     />
                 </SelectableList>
