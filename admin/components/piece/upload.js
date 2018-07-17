@@ -17,6 +17,7 @@ let g_object_name = '';
 let g_object_name_type = '';
 let timestamp = Date.parse(new Date()) / 1000;
 let now = timestamp;
+let suffix = '';
 
 export default class UploadBox extends Component{
     constructor(props){
@@ -193,8 +194,7 @@ export default class UploadBox extends Component{
     }
 
     get_suffix(filename) {
-        pos = filename.lastIndexOf('.')
-        suffix = ''
+        let pos = filename.lastIndexOf('.')
         if (pos != -1) {
             suffix = filename.substring(pos)
         }
@@ -230,7 +230,7 @@ export default class UploadBox extends Component{
             suffix = this.get_suffix(filename)
             this.calculate_object_name(filename)
         }
-        new_multipart_params = {
+        let new_multipart_params = {
             'key' : g_object_name,
             'policy': policyBase64,
             'OSSAccessKeyId': accessid,
