@@ -300,12 +300,12 @@ export default class Header extends Component{
                     data: {name: data.userName, password: md5(data.userPassword)},
                     success: function(data){
                         if(data.code == 200 && data.msg == 'success'){
+                            _this.dialogLoginClose();
+
                             store.dispatch({
                                 type: TYPE.SET_LOGIN_USER,
                                 val: data.body.name
                             });
-
-                            _this.dialogLoginClose();
                         }else{
                             _this.snackbarOpen(data.msg);
                         }
@@ -360,6 +360,25 @@ export default class Header extends Component{
         }
     }
 
+    //退出登录
+    logOut(){
+        $.ajax({
+            url: '/api/logout',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+                if(data.code == 200){
+                    console.log('退出成功');
+                }
+
+                window.location.href = '/';
+            },
+            error: () => {
+                console.log('请求失败！');
+            }
+        });
+    }
+
 
 	render(){
         let loginUser = store.getState().login.loginUser;
@@ -397,7 +416,7 @@ export default class Header extends Component{
                                             <div className="userinfo">
                                                 <div className="welcomuser">欢迎您，{ loginUser }</div>
                                                 <div className="toadmin" onClick={() => {window.location.href = '/admin';}}>登录到后台</div>
-                                                <div className="logout" onClick={() => {console.log('退出登录');}}>退出登录</div>
+                                                <div className="logout" onClick={ this.logOut.bind(this) }>退出登录</div>
                                             </div>
                                             :
                                             null
