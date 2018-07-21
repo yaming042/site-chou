@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-export default class Index4 extends Component{
+export default class Stroll extends Component{
 
 	render(){
 		return (
 			<div>
-				这是 Index4
+				这是 Stroll
 			</div>
 		);
 	}

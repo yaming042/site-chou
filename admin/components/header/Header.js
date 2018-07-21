@@ -6,6 +6,24 @@ import Search from '../piece/search';
 
 export default class Header extends Component{
 
+    logOut(){
+        $.ajax({
+            url: '/api/logout',
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+                if(data.code == 200){
+                    console.log('退出成功');
+                }
+
+                window.location.href = '/';
+            },
+            error: () => {
+                console.log('请求失败！');
+            }
+        });
+    }
+
     render(){
         return (
             <div className='header'>
@@ -24,6 +42,7 @@ export default class Header extends Component{
                             tooltip="退出登录"
                             tooltipPosition="bottom-center"
                             style={{height: '60px'}}
+                            onClick={ this.logOut.bind(this) }
                         />
                     </div>
                 </div>

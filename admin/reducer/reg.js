@@ -1,4 +1,4 @@
-import * as TYPE from '../const';
+import * as TYPE from '../../app/const';
 
 if (typeof Object.assign != 'function') {
     Object.assign = function (target) {
@@ -22,23 +22,20 @@ if (typeof Object.assign != 'function') {
 }
 
 const initState = {
-	userId: '1',
-	userName: 'test1',
-	userAge: '22',
+    userName: '',
+    userPassword: '',
 };
 
-function maiReducer(state=initState, action){
-	switch(action.type){
-		case TYPE.GUANG_ID:
-			return Object.assign({}, state, {userId: action.val});
-		case TYPE.GUANG_NAME:
-			return Object.assign({}, state, {userName: action.val});
-		case TYPE.GUANG_AGE:
-			return Object.assign({}, state, {userAge: action.val});
-		default:
-			return state;
-	}
+function loginReducer(state=initState, action){
+    switch(action.type){
+        case TYPE.SET_USER_NAME:
+            return Object.assign({}, state, {userName: action.val});
+        case TYPE.SET_USER_PASSWORD:
+            return Object.assign({}, state, {userPassword: action.val});
+        default:
+            return state;
+    }
 }
 
 
-export default maiReducer;
+export default loginReducer;

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import Snackbar from 'material-ui/Snackbar';
 
 import Input from './piece/input';
 
 import styles from '../style';
 
 import store from '../store';
+import * as Func from "../../controller/functions";
 
 let validateName = [
     {
@@ -50,11 +52,11 @@ let validatePwd = [
 
                 errors.pwdError = '请输入您的密码';
             }else{
-                if( value.length > 8 ){
+                if( value.length > 12 ){
                     this.setState({
                         style: 'input-error'
                     });
-                    errors.pwdError = '用户名错误(应为8个字符)';
+                    errors.pwdError = '密码错误(应为12个字符)';
                 }else{
                     this.setState({
                         style: 'input-normal'
@@ -72,37 +74,64 @@ let errors = {};
 export default class Login extends Component{
     constructor(props){
         super(props);
+
+        this.state = {
+            snackbarOpen: false,
+            snackbarMsg: '',
+        };
     }
 
     componentDidMount(){
-
+        Func.createScript('/js/md5.js', () => {
+            console.log('md5 already');
+        });
     }
 
     submit(){
+        let _this = this;
         $('.my-input').each((i) => {
             $($('.my-input')[i]).focus().blur();
         });
-        setTimeout(() => {
-            let data = store.getState().login;
-            console.log( data );
 
-            $.ajax({
-                url: '/api/login',
-                type: 'GET',
-                dataType: 'json',
-                success: function(data){
-                    console.log(data);
-                    if(data.status == 200 && data.msg == 'success'){
-                        window.location.href = '/admin';
+        if(!Object.keys(errors).length){
+            setTimeout(() => {
+                let data = store.getState().login;
+
+                $.ajax({
+                    url: '/api/login',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {name: data.userName, password: md5(data.userPassword)},
+                    success: function(data){
+                        if(data.code == 200 && data.msg == 'success'){
+                            window.location.href = '/admin';
+                        }else{
+                            _this.snackbarOpen(data.msg);
+                        }
+                    },
+                    error: function(xhr,status,error){
+                        console.log('status is: ' + status);
+                        console.log( 'error : ' + error );
                     }
-                },
-                error: function(xhr,status,error){
-                    console.log('status is: ' + status);
-                    console.log( 'error : ' + error );
-                }
-            });
+                });
 
-        }, 300)
+            }, 300)
+        }
+    }
+
+    //snackbar打开
+    snackbarOpen(msg){
+        this.setState({
+            snackbarOpen: true,
+            snackbarMsg: msg,
+        });
+    }
+    //snackbar关闭
+    snackbarClose(){
+        this.setState({
+            snackbarOpen: false,
+            snackbarMsg: '',
+        });
     }
 
     render(){
@@ -122,6 +151,7 @@ export default class Login extends Component{
                             name="name"
                             validateFunc={ validateName }
                             pushState={ this.props.setUserName }
+                            md5={true}
                         />
                         {
                             errors.nameError ?
@@ -136,10 +166,12 @@ export default class Login extends Component{
                         <p>密码</p>
                         <Input
                             ref='userpwd'
+                            type='password'
                             placeholder="请输入您的密码"
                             name="password"
                             validateFunc={ validatePwd }
                             pushState={ this.props.setUserPassword }
+                            md5={true}
                         />
                         {
                             errors.pwdError ?
@@ -160,6 +192,13 @@ export default class Login extends Component{
                         />
                     </div>
                 </div>
+
+                <Snackbar
+                    open={ this.state.snackbarOpen }
+                    message={ this.state.snackbarMsg }
+                    autoHideDuration={ 3000 }
+                    onRequestClose={ this.snackbarClose.bind(this) }
+                />
             </div>
         );
     }

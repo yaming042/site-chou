@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-export default class Index2 extends Component{
+export default class Enjoy extends Component{
 	componentDidMount(){
 		console.log('index2');
 	}
 	render(){
 		return (
 			<div>
-				这是 Index2
+				这是 Enjoy
 			</div>
 		);
 	}

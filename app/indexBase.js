@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Header from './components/header';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as LoginActions from './actions/login';
+
+
+import header from './components/header';
 import Footer from './components/footer';
 
 export default class Base extends Component{
@@ -8,13 +16,24 @@ export default class Base extends Component{
 	render(){
 
 		return (
-			<div className='main-root'>
-				<Header />
+            <MuiThemeProvider>
+                <div className='main-root'>
+                    <Header />
 
-				{ this.props.children }
+                    { this.props.children }
 
-				<Footer />
-			</div>
+                    <Footer />
+                </div>
+            </MuiThemeProvider>
 		);
 	}
 }
+
+function mapStateToProps(state){
+    return state;
+}
+function mapDispatchToProps(dispatch){
+    return bindActionCreators(LoginActions, dispatch);
+}
+
+const Header = connect(mapStateToProps, mapDispatchToProps)(header);

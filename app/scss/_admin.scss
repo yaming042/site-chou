@@ -237,9 +237,12 @@
 
           .preview-item{
             position: relative;
-            height: 200px;
-            margin: 0 0 10px;
+            width: 48%;
+            margin: 4px 1%;
             overflow: hidden;
+            float: left;
+            height: 120px;
+            border: 1px solid #ccc;
 
             img{
               width: 100%;
@@ -248,7 +251,7 @@
             }
 
             .processBar{
-              //display: none;
+              display: none;
               position: absolute;
               width: 100%;
               left: 0;

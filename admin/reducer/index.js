@@ -5,6 +5,7 @@ import eat from './eat';
 import stroll from './stroll';
 import search from './search';
 import login from './login';
+import reg from './reg';
 
 let rootReducer = combineReducers({
     enjoy,
@@ -12,6 +13,7 @@ let rootReducer = combineReducers({
     stroll,
     search,
     login,
+    reg,
 });
 
 export default rootReducer;

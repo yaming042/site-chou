@@ -49,13 +49,14 @@ export default class Input extends Component{
             if (_this.props.pushState) {
                 _this.props.pushState(_this.state.value);
             }
-        });
+        }, 100);
 
     }
 
     render() {
         let placeholder = this.props.placeholder || '';
         let extendClass = this.props.extendClass || '';
+        let style = this.props.style || null;
         let type = this.props.type || 'text';
         let name = this.props.name || '';
         return (
@@ -63,6 +64,7 @@ export default class Input extends Component{
                 ref="myInput"
                 type={type}
                 className={"my-input " + this.state.style + ' ' + extendClass}
+                style={ style }
                 placeholder={placeholder}
                 value={this.state.value}
                 name={name}

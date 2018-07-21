@@ -17,10 +17,35 @@ exports.decrypt = function(data, secret) {
     return dec;
 };
 
-exports.funcGetSetToken = function (url, data, callback) {
+exports.getMethed = function (url, callback) {
     request({
         url: url,
         method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },function (error, response, body) {
+        if( error ){
+            callback('{"status": "error","msg": "服务器请求错误"}');
+        }else{
+            try {
+                callback(body);
+            } catch (err) {
+                console.log(err);
+                console.log("Error name: " + err.name + "");
+                console.log("Error message: " + err.message);
+                callback('{"status": "err","msg": "服务器请求错误"}');
+            }
+        }
+    });
+};
+
+//post方法
+exports.postMethed = function (url, data, callback) {
+
+    request({
+        url: url,
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -31,9 +56,7 @@ exports.funcGetSetToken = function (url, data, callback) {
         }else{
             try {
                 if (JSON.parse(body)) {
-                    var res = {"status": 200,"msg": "success"};
-                    res.data = body;
-                    callback(res);
+                    callback(body);
                 }
             } catch (err) {
                 console.log(err);
@@ -43,4 +66,96 @@ exports.funcGetSetToken = function (url, data, callback) {
             }
         }
     });
+};
+
+//get方法，带token
+exports.getMethedToken = function(url, token, cookie, callback){
+    var result = {};
+
+    if(!token || !cookie || token != cookie){
+        result = {
+            code: 10114,
+            msg: '用户认证失败'
+        };
+        callback(JSON.stringify(result));
+        return;
+    }else if(token == cookie){
+        request({
+            url: url,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        },function (error, response, body) {
+            if( error ){
+                callback('{"status": "error","msg": "服务器请求错误"}');
+            }else{
+                try {
+                    callback(JSON.stringify({
+                        code: 200,
+                        msg: 'success',
+                        body: body
+                    }));
+                } catch (err) {
+                    console.log(err);
+                    console.log("Error name: " + err.name + "");
+                    console.log("Error message: " + err.message);
+                    callback('{"status": "err","msg": "服务器请求错误"}');
+                }
+            }
+        });
+    }else{
+        result = {
+            code: 10115,
+            msg: '用户认证失败'
+        };
+        callback(JSON.stringify(result));
+        return;
+    }
+};
+
+//post方法，带token
+exports.postMethedToken = function(url, data, token, cookie, callback){
+    var result = {};
+    if(!token || !cookie || token != cookie){
+        result = {
+            code: 10114,
+            msg: '用户认证失败'
+        };
+        callback(JSON.stringify(result));
+        return;
+    }else if(token == cookie){
+        request({
+            url: url,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        },function (error, response, body) {
+            if( error ){
+                callback('{"status": "error","msg": "服务器请求错误"}');
+            }else{
+                try {
+                    callback(JSON.stringify({
+                        code: 200,
+                        msg: 'success',
+                        body: body
+                    }));
+                } catch (err) {
+                    console.log(err);
+                    console.log("Error name: " + err.name + "");
+                    console.log("Error message: " + err.message);
+                    callback('{"status": "err","msg": "服务器请求错误"}');
+                }
+            }
+        });
+    }else{
+        result = {
+            code: 10115,
+            msg: '用户认证失败'
+        };
+        callback(JSON.stringify(result));
+        return;
+    }
 };

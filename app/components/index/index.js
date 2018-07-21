@@ -17,8 +17,8 @@ export default class Index1 extends Component{
             ],
 
             location: '北京',
-            data1: {
-                type: '好吃的',
+            data1:{
+                type: '好玩的',
                 data: [
                     {
                         id: '10001',
@@ -53,7 +53,7 @@ export default class Index1 extends Component{
                 ],
             },
             data2: {
-                type: '好玩的',
+                type: '好吃的',
                 data: [
                     {
                         id: '10003',
@@ -269,7 +269,7 @@ export default class Index1 extends Component{
                             <div className="title-area">
                                 <span>{ this.state.data1.type }</span>
                             </div>
-                            <div className="title-more" onClick={() => { browserHistory.push('/type1'); }}>
+                            <div className="title-more" onClick={() => { browserHistory.push('/enjoy'); }}>
                                 <span>查看更多</span>
                             </div>
                         </div>
@@ -313,7 +313,7 @@ export default class Index1 extends Component{
                             <div className="title-area">
                                 <span>{this.state.data2.type}</span>
                             </div>
-                            <div className="title-more" onClick={() => { browserHistory.push('/type2'); }}>
+                            <div className="title-more" onClick={() => { browserHistory.push('/eat'); }}>
                                 <span>查看更多</span>
                             </div>
                         </div>
@@ -363,7 +363,7 @@ export default class Index1 extends Component{
                             <div className="title-area">
                                 <span>{this.state.data3.type}</span>
                             </div>
-                            <div className="title-more" onClick={() => { browserHistory.push('/type3'); }}>
+                            <div className="title-more" onClick={() => { browserHistory.push('/stroll'); }}>
                                 <span>查看更多</span>
                             </div>
                         </div>

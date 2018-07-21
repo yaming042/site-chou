@@ -22,3 +22,7 @@ export const SET_ENJOY_ID = 'SET_ENJOY_ID';
 //login
 export const SET_USER_NAME = 'SET_USER_NAME';
 export const SET_USER_PASSWORD = 'SET_USER_PASSWORD';
+export const SET_USER_MOBILE = 'SET_USER_MOBILE';
+export const SET_USER_VERIFICATION = 'SET_USER_VERIFICATION';
+export const SET_USER_EMAIL = 'SET_USER_EMAIL';
+export const SET_LOGIN_USER = 'SET_LOGIN_USER';

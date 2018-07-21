@@ -21,13 +21,13 @@ app.set('view engine', 'html');
 //设置session
 app.use(session({
     secret: 'tianyaming',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
         path: '/',
         httpOnly: true,
         secure: false,
-        maxAge: 1000*60*15,
+        maxAge: 1000*60*60,//session一小时过期
     }
 }))
 

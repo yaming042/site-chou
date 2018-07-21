@@ -61,9 +61,8 @@ export default class EnjoyTable extends Component{
 
     //获取enjoy数据
     getData(){
-        console.log('获取数据列表');
         $.ajax({
-            url: '/api/json',
+            url: '/api/getProlist?type=enjoy',
             type: 'GET',
             dataType: 'json',
             success: function (data) {

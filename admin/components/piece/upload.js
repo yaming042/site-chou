@@ -4,6 +4,7 @@ import Snackbar from 'material-ui/Snackbar';
 
 import * as Events from '../../Events';
 
+let uploader;
 let accessid = '';
 let accesskey = '';
 let host = '';
@@ -14,7 +15,6 @@ let filename = '';
 let key = '';
 let expire = 0;
 let g_object_name = '';
-let g_object_name_type = '';
 let timestamp = Date.parse(new Date()) / 1000;
 let now = timestamp;
 let suffix = '';
@@ -39,13 +39,13 @@ export default class UploadBox extends Component{
         });
 
 
-        let uploader = new plupload.Uploader({
+        uploader = new plupload.Uploader({
             runtimes: 'html5,flash,silverlight,html4',
             browse_button: 'upload-btn',
             //multi_selection: false,
             container: document.getElementById('upload-container'),
-            flash_swf_url: 'lib/plupload-2.1.2/js/Moxie.swf',
-            silverlight_xap_url: 'lib/plupload-2.1.2/js/Moxie.xap',
+            flash_swf_url: '/lib/plupload-2.1.2/js/Moxie.swf',
+            silverlight_xap_url: '/lib/plupload-2.1.2/js/Moxie.xap',
             url: 'http://oss.aliyuncs.com',
 
             filters: {
@@ -82,17 +82,8 @@ export default class UploadBox extends Component{
 
         });
 
-        //准备上传是的设置
-        // uploader.bind('PostInit', () => {
-        //     document.getElementById('').onclick = function() {
-        //         this.set_upload_param(uploader, '', false);
-        //         return false;
-        //     };
-        // });
-
         //上传前准备
         uploader.bind('BeforeUpload', (up, file) => {
-            this.check_object_radio();
             this.set_upload_param(up, file.name, true);
         });
 
@@ -130,52 +121,33 @@ export default class UploadBox extends Component{
                 _this.snackbarOpen('Error xml: ' + err.response);
             }
         })
-
     }
 
     //======================
-    send_request(){
-        let xmlhttp = null;
-        if(window.XMLHttpRequest){
-            xmlhttp = new XMLHttpRequest();
-        }else if(window.ActiveXObject){
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        if(xmlhttp != null){
-            let serverUrl = 'http://47.94.97.168:8082/getsignature';
-            xmlhttp.open( "GET", serverUrl, false );
-            xmlhttp.send( null );
-            return xmlhttp.responseText;
-        }else{
-            alert("Your browser does not support XMLHTTP.");
-        }
-    };
-
-    check_object_radio() {
-        let tt = document.getElementsByName('myradio');
-        for (let i = 0; i < tt.length ; i++ ){
-            if(tt[i].checked){
-                g_object_name_type = tt[i].value;
-                break;
-            }
-        }
-    }
-
     get_signature() {
         //可以判断当前expire是否超过了当前时间,如果超过了当前时间,就重新取一下.3s 做为缓冲
         now = timestamp = Date.parse(new Date()) / 1000;
+
         if (expire < now + 3){
-            let body = this.send_request()
-            let obj = eval ("(" + body + ")");
-            host = obj['host']
-            policyBase64 = obj['policy']
-            accessid = obj['accessid']
-            signature = obj['signature']
-            expire = parseInt(obj['expire'])
-            callbackbody = obj['callback']
-            key = obj['dir']
-            return true;
+            $.ajax({
+                type: 'GET',
+                url: '/api/getSignature',
+                dataType: 'json',
+                success: (data) => {
+                    let obj = eval ("(" + data + ")");
+                    host = obj['host']
+                    policyBase64 = obj['policy']
+                    accessid = obj['accessid']
+                    signature = obj['signature']
+                    expire = parseInt(obj['expire'])
+                    callbackbody = obj['callback']
+                    key = obj['dir']
+                    return true;
+                },
+                error: () => {
+                    console.log('获取签名失败');
+                }
+            });
         }
         return false;
     };
@@ -199,22 +171,22 @@ export default class UploadBox extends Component{
         return suffix;
     }
 
-    calculate_object_name(filename){
-        if (g_object_name_type == 'local_name'){
+    calculate_object_name(filename, type){
+        if (type == 'local_name'){
             g_object_name += "${filename}"
-        }else if (g_object_name_type == 'random_name'){
+        }else if (type == 'random_name'){
             suffix = this.get_suffix(filename)
             g_object_name = key + this.random_string(10) + suffix
         }
         return ''
     }
 
-    get_uploaded_object_name(filename){
-        if(g_object_name_type == 'local_name'){
+    get_uploaded_object_name(filename, type){
+        if(type == 'local_name'){
             tmp_name = g_object_name
             tmp_name = tmp_name.replace("${filename}", filename);
             return tmp_name
-        }else if(g_object_name_type == 'random_name'){
+        }else if(type == 'random_name'){
             return g_object_name
         }
     }
@@ -226,7 +198,7 @@ export default class UploadBox extends Component{
         g_object_name = key;
         if (filename != '') {
             suffix = this.get_suffix(filename)
-            this.calculate_object_name(filename)
+            this.calculate_object_name(filename, 'local_name')
         }
         let new_multipart_params = {
             'key' : g_object_name,
@@ -270,6 +242,33 @@ export default class UploadBox extends Component{
         }
     }
 
+    //从缩略图中删除图片
+    removeThumbnial(id){
+        let obj = this.state.files.concat();
+        let pos_1 = -1,
+            pos_2 = -1;
+        let len = uploader.files.length;
+        for(let i=0;i<len;i++){
+            if(uploader.files[i].id == id){
+                pos_1 = i;
+            }
+            if(obj[i].id == id){
+                pos_2 = i;
+            }
+            if(pos_1 > -1 && pos_2 > -1){
+                break;
+            }
+        }
+
+        console.log(pos_1, pos_2);
+
+        obj.splice(pos_2, 1)
+        this.setState({
+            files: obj,
+        });
+        uploader.files.splice(pos_1, 1);
+    }
+
     //snackbar打开
     snackbarOpen(msg){
         this.setState({
@@ -302,9 +301,9 @@ export default class UploadBox extends Component{
                                         <img src={ d.thumbnail } alt=""/>
                                         <div className="processBar">
                                             <div className="bg"></div>
-                                            <span className='percent'>90%</span>
+                                            <span className='percent'></span>
                                         </div>
-                                        <div className="delete-btn">
+                                        <div className="delete-btn" onClick={ this.removeThumbnial.bind(this, d.id) }>
                                             <IconButton
                                                 iconClassName="iconfont icon-guanbi"
                                                 tooltip="删除"

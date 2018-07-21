@@ -1,5 +1,5 @@
 import * as TYPE from '../../app/const';
-import guangReducer from "../../app/reducers/guang";
+import guangReducer from "../../app/reducers/stroll";
 
 if (typeof Object.assign != 'function') {
     Object.assign = function (target) {

@@ -13,6 +13,7 @@ module.exports = {
 		index: './app/index.js',
         admin: './admin/index.js',
         login: './admin/login.js',
+        reg: './admin/reg.js',
         detail: './app/detail.js',
 	},
 	output: {

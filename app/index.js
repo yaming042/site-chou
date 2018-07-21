@@ -12,10 +12,10 @@ ReactDom.render(
 	<Provider store={store}>
 		<Router history={ browserHistory }>
 			<Route path='/' component={ Base } >
-				<IndexRoute component={ Index.index1 } />
-				<Route path='/type1' component={ Index.index2 } />
-				<Route path='/type2' component={ Index.index3 } />
-				<Route path='/type3' component={ Index.index4 } />
+				<IndexRoute component={ Index.index } />
+				<Route path='/enjoy' component={ Index.enjoy } />
+				<Route path='/eat' component={ Index.eat } />
+				<Route path='/stroll' component={ Index.stroll } />
 			</Route>
 		</Router>
 	</Provider>,

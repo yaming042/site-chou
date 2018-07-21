@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><%= title %></title>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_726487_3dd0e70vn15.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_726487_3sy4fhlfxqf.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery2.1.4.min.js"></script>
     <script src="/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
@@ -44,13 +44,8 @@
                         cookie[k] = arr[1];
                     });
 
-                    if (tempData.code == 10114 || tempData.code == 10122) {//这里判断token是否过期，10114，10122代表token过期
-                        $.post('/api/authorLoginIn', {data: cookie['web_tian']}, (data) => {
-
-                            if (data.status != 'success') {
-                                window.location.href = '/login';
-                            }
-                        });
+                    if (tempData.code == 10114 || tempData.code == 10115) {//这里判断token是否过期，10114，10122代表token过期
+                        window.location.href = '/login';
                     }
 
                     fn.success(data, textStatus);

@@ -33,6 +33,11 @@
       align-items: center;
       padding-right: 20px;
 
+      &>.option-btn{
+        display: flex;
+        align-items: center;
+      }
+
       .reg{
         font-size: 14px;
         cursor: pointer;
@@ -73,6 +78,71 @@
 
           a{
             color: #fff;
+          }
+        }
+      }
+      .loginuser{
+        //display: none;
+        position: relative;
+        font-size: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 26px;
+        line-height: 25px;
+        border-radius: 2px;
+        padding: 0 6px;
+        margin-left: 6px;
+
+        &>.iconfont{
+          color: green;
+          font-weight: bold;
+        }
+
+        .userinfo{
+          position: absolute;
+          width: 150px;
+          z-index: 99;
+          right: -10px;
+          top: 130%;
+          background: red;
+          border-radius: 4px;
+          padding: 4px;
+          background: #ffffff;
+          box-shadow: 0 0 8px rgba(0,0,0,.3);
+          -webkit-box-shadow: 0 0 8px rgba(0,0,0,.3);
+          -moz-box-shadow: 0 0 8px rgba(0,0,0,.3);
+          -ms-box-shadow: 0 0 8px rgba(0,0,0,.3);
+          -o-box-shadow: 0 0 8px rgba(0,0,0,.3);
+
+          &>div{
+            border-bottom: 1px solid #ccc;
+            padding: 4px 6px;
+
+            &:hover{
+              background: rgba(153, 153, 153, 0.3);
+            }
+
+            &:first-child:hover{
+              background: none;
+              cursor: default;
+            }
+
+            &:last-child{
+              border: none;
+            }
+          }
+
+          &:after{
+            content: '';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            display: block;
+            height: 0;
+            border-width: 6px;
+            border-style: solid;
+            border-color: transparent transparent #fff transparent;
           }
         }
       }
@@ -131,5 +201,90 @@
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     cursor: pointer;
+  }
+}
+
+//注册，登录样式
+.dialog-container-reg {
+  .login {
+    &>i.iconfont{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+    }
+
+    h3 {
+      text-align: center;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    .input-row {
+      position: relative;
+      margin: 5px auto 20px;
+      height: 30px;
+      width: 80%;
+
+      & > p {
+        float: left;
+        width: 30%;
+        height: 100%;
+        line-height: 30px;
+
+        i{
+          color: red;
+          font-size: 12px;
+        }
+      }
+
+      & > input {
+        float: left;
+        width: 70%;
+        height: 30px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        outline: none;
+        padding: 0 2px;
+
+        &.input-focus{
+          border-bottom-color: blue;
+        }
+
+        &.input-error{
+          border-bottom-color: red;
+        }
+      }
+      & > input:-webkit-autofill{
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+        -webkit-text-fill-color: #000;
+      }
+
+      .error-info {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        font-size: 12px;
+        color: red;
+      }
+
+      &:last-child{
+        margin-top: 40px;
+      }
+
+      .verification{
+        position: absolute;
+        width: 60px;
+        height: 30px;
+        right: 0;
+        bottom: 1px;
+        line-height: 30px;
+        font-size: 14px;
+        text-align: center;
+        color: #424242;
+        background: #e0e0e0;
+        cursor: pointer;
+      }
+    }
   }
 }
