@@ -227,11 +227,18 @@
           font-size: 14px;
           padding-bottom: 5px;
           border-bottom: 1px solid #ccc;
+
+          &>span{
+            color: red;
+            font-size: 12px;
+            font-style: italic;
+            padding-left: 10px;
+          }
         }
 
         //图片预览
         .preview{
-          height: 350px;
+          height: 348px;
           overflow-y: auto;
           padding: 0 10px 5px;
 

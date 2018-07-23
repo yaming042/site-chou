@@ -358,8 +358,13 @@
         font-size: 14px;
         padding-bottom: 5px;
         border-bottom: 1px solid #ccc; }
+        .dialog-container .dialog-main .dialog-body .right .title > span {
+          color: red;
+          font-size: 12px;
+          font-style: italic;
+          padding-left: 10px; }
       .dialog-container .dialog-main .dialog-body .right .preview {
-        height: 350px;
+        height: 348px;
         overflow-y: auto;
         padding: 0 10px 5px; }
         .dialog-container .dialog-main .dialog-body .right .preview .preview-item {

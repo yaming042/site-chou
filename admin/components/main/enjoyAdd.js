@@ -4,7 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 
-import UploadBox from '../piece/upload';
+import UploadBox from '../piece/upload_v1';
+import UploadBox_v2 from '../piece/upload_v2';
 
 import styles from '../../style';
 import * as events from "../../Events";

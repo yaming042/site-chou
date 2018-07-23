@@ -83,7 +83,7 @@ router.get('/getVerification', function (req, res, next) {
     var len = srcstr.length;
     var code = '';
     for(var i=0;i<4;i++){
-        code += srcstr.substr(Math.floor(Math.random()*len), 1);
+        code += srcstr.substr(Math.floor(Math.random()*len), 1) + ' ';
     }
 
     req.session.__code = code;
