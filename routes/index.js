@@ -16,6 +16,9 @@ router.get('/enjoy', function(req, res, next) {
 router.get('/stroll', function(req, res, next) {
   res.render('index', { title: '逛', bundle: '/dist/index_bundle.js' });
 });
+router.get('/detail', function(req, res, next) {
+    res.render('index', { title: '详情', bundle: '/dist/index_bundle.js' });
+});
 
 router.get('/login', function(req, res, next) {
     res.render('index', { title: '登录后台', bundle: '/dist/login_bundle.js' });

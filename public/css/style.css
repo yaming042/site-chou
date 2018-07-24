@@ -410,6 +410,9 @@
           font-size: 12px; }
     .dialog-container .dialog-main .dialog-body .input-row {
       margin-bottom: 16px; }
+      .dialog-container .dialog-main .dialog-body .input-row > div input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+        -webkit-text-fill-color: #000; }
   .dialog-container .dialog-main .dialog-footer {
     text-align: right;
     margin-top: 12px;

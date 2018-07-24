@@ -8,6 +8,8 @@ import page2 from '../components/index/enjoy';
 import page3 from '../components/index/eat';
 import page4 from '../components/index/stroll';
 
+import page5 from '../components/index/subIndex';
+
 function mapStateToProps(state){
 	return state;
 }
@@ -19,3 +21,4 @@ export const index = connect(mapStateToProps, mapDispatchToProps)(page1);
 export const enjoy = connect(mapStateToProps, mapDispatchToProps)(page2);
 export const eat = connect(mapStateToProps, mapDispatchToProps)(page3);
 export const stroll = connect(mapStateToProps, mapDispatchToProps)(page4);
+export const subindex = connect(mapStateToProps, mapDispatchToProps)(page5);

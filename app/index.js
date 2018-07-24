@@ -15,7 +15,8 @@ ReactDom.render(
 				<IndexRoute component={ Index.index } />
 				<Route path='/enjoy' component={ Index.enjoy } />
 				<Route path='/eat' component={ Index.eat } />
-				<Route path='/stroll' component={ Index.stroll } />
+                <Route path='/stroll' component={ Index.stroll } />
+                <Route path='/detail' component={ Index.subindex } />
 			</Route>
 		</Router>
 	</Provider>,

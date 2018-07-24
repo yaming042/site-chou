@@ -135,4 +135,25 @@ router.get('/logout', function (req, res, next) {
     res.send({code: 200, msg: 'success'});
 });
 
+//新建项目
+router.post('/createProduct', function (req, res, next) {
+    var data = req.body;
+    var session = req.cookies.web_tian;
+
+    var nameStr = utils.decrypt(session, configs.secret);
+    var pos = nameStr.indexOf('+');
+    var name = nameStr.substr(0, pos);
+
+    var pid = name + '+' + new Date().getTime();
+    data.pid = utils.encrypt(pid, configs.secret);
+
+    console.log(data);
+
+    // utils.postMethedToken(url, data, req.session.token, req.cookies.web_tian, function(data) {
+    //
+    // });
+
+    res.send({"code":200});
+});
+
 module.exports = router;

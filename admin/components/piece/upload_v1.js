@@ -85,7 +85,7 @@ export default class UploadBox extends Component{
                                 files: data.concat(oldData),
                             });
 
-                            _this.set_upload_param(uploader, '');//上传后立即更新
+                            // _this.set_upload_param(uploader, '');//上传后立即更新
                         }, 200);
                     },
 
@@ -113,6 +113,7 @@ export default class UploadBox extends Component{
                     Error: function (up, err) {
                         let msg = '';
                         if(err.code == -600){
+                            // _this.snackbarOpen('大于 1M 的图片暂不支持上传');
                             msg = '大于 1M 的图片暂不支持上传';
                         }else if (err.code == -601){
                             msg = '请选择正确格式的图片( jpg, jpeg, gif, png, bmp )';

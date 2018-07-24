@@ -37,7 +37,7 @@ export default class Add extends Component{
 
     //提交
     confirmClose(){
-        events.customEvents.emit(events.UPLOAD_IMAGE);
+        // events.customEvents.emit(events.UPLOAD_IMAGE);
 
 
         $("#name").focus().blur();
@@ -52,7 +52,19 @@ export default class Add extends Component{
             let name = $("#name").val();
             let local = $("#location").val();
             let intro = $("#introduce").val();
-            console.log("验证完成，准备提交");
+
+            $.ajax({
+                url: '/api/createProduct',
+                type: 'POST',
+                dataType: 'json',
+                data: {pname: name, plocal: local, pintro: intro},
+                success: (data) => {
+                    console.log(data);
+                },
+                error: () => {
+                    console.log('Error');
+                }
+            });
         })
 
     }
@@ -92,8 +104,8 @@ export default class Add extends Component{
                 }else{
                     info = '简介字段为必填字段，请填写';
                 }
-                if(val.length > 10){
-                    info = '简介字段过长，请修改';
+                if(val.length > 320){
+                    info = '简介字段过长，应小于320个字符';
                 }
                 this.setState({
                     errorIntro: info,
