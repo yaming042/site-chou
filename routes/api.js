@@ -1,9 +1,19 @@
 var express = require('express');
 var request = require('request');
+var fs = require('fs');
+var multiparty = require('multiparty');
+var OSS = require('ali-oss');
 var utils = require('../controller/utils');
 var configs = require('../controller/config.json');
 
 var router = express.Router();
+
+var ossClient = new OSS({
+    accessKeyId: configs.oss.accessKeyId,
+    accessKeySecret: configs.oss.accessKeySecret,
+    bucket: configs.oss.bucket,
+    region: configs.oss.region
+});
 
 //路由/api
 router.post('/login', function (req, res, next) {
@@ -154,6 +164,37 @@ router.post('/createProduct', function (req, res, next) {
     // });
 
     res.send({"code":200});
+});
+
+router.post("/uploadimg", function (req, res, next) {
+    var name = '',
+        path = '';
+    fs.exists('./tempFiles', function (exist) {
+        if (!exist) {
+            fs.mkdir('./tempFiles');
+        }
+    });
+    var form = new multiparty.Form({uploadDir: './tempFiles'});
+
+    form.parse(req, function (err, fields, files) {
+        if (err) {
+            console.log('parse error: ' + err);
+        } else {
+            var inputFile = files.file[0];
+            name = 'uploads/' + inputFile.originalFilename;
+            path = inputFile.path;
+
+            ossClient.put(name, path, function (err, data) {
+                if (err) {
+                    console.log(err, data);
+                    res.json(err);
+                } else {
+                    fs.unlink(inputFile.path, () => {});
+                }
+            });
+        }
+        res.json({status: 'success', path: configs.oss.addr + name});
+    });
 });
 
 module.exports = router;
