@@ -27,12 +27,28 @@ router.post('/login', function (req, res, next) {
             var token = utils.encrypt(password, configs.secret);
 
             req.session.token = token;
-            res.cookie('web_tian', token, {
-                maxAge: 1000*60*30,//cookie一小时过期
-                httpOnly: false,
-                path: '/',
-                secure: false
-            });
+            var cook = req.cookies.web_tian || '';
+
+            var isLogin = false;
+            if(cook){
+                var c = utils.decrypt(cook, configs.secret);
+                var name = utils.getUserName(c);
+
+                isLogin = name == obj.body.name ? false : true;
+            }else{
+                isLogin = true;
+            }
+
+
+            if(isLogin){//这里判断如果name相等说明cookie已经存在，否则就重新设置cookie
+                res.cookie('web_tian', token, {
+                    maxAge: 1000*60*60*24,//cookie一天过期
+                    httpOnly: false,
+                    path: '/',
+                    secure: false
+                });
+            }
+
         }
 
         res.send(body);
@@ -127,13 +143,16 @@ router.post('/getUserName', function (req, res, next) {
     }
 
     var result = {};
-    if(req.session.token == cookie['web_tian']){
-        var nameStr = utils.decrypt(cookie['web_tian'], configs.secret);
-        var pos = nameStr.indexOf('+');
-        var name = nameStr.substr(0, pos);
-        result = {code: 200, msg: 'success', body: {name: name}}
-    }else{
+
+    var c = utils.getUserName(utils.decrypt(cookie['web_tian'], configs.secret));
+    var s = utils.getUserName(utils.decrypt(req.session.token, configs.secret));
+
+    if(!s || !c || s != c){
         result = {code: 201, msg: '身份识别失败'};
+    }else if(c == s){
+        result = {code: 200, msg: 'success', body: {name: s}}
+    }else{
+        result = {code: 203, msg: '身份识别失败'};
     }
 
     res.send(result);
@@ -151,10 +170,11 @@ router.post('/createProduct', function (req, res, next) {
     var session = req.cookies.web_tian;
 
     var nameStr = utils.decrypt(session, configs.secret);
-    var pos = nameStr.indexOf('+');
-    var name = nameStr.substr(0, pos);
+    var name = utils.getUserName(nameStr);
 
-    var pid = name + '+' + new Date().getTime();
+    var time = new Date();
+    var t = time.getSeconds() + time.getMilliseconds();//重复率 1/60000
+    var pid = name + '+' + data.type + '+' + t;
     data.pid = utils.encrypt(pid, configs.secret);
 
     console.log(data);
@@ -184,13 +204,9 @@ router.post("/uploadimg", function (req, res, next) {
             name = 'uploads/' + inputFile.originalFilename;
             path = inputFile.path;
 
-            ossClient.put(name, path, function (err, data) {
-                if (err) {
-                    console.log(err, data);
-                    res.json(err);
-                } else {
-                    fs.unlink(inputFile.path, () => {});
-                }
+            ossClient.put(name, path).then((data) => {
+                // console.log(data);
+                fs.unlink(inputFile.path, () => {});
             });
         }
         res.json({status: 'success', path: configs.oss.addr + name});

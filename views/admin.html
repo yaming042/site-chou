@@ -34,14 +34,6 @@
                 },
                 success: function (data, textStatus) {
                     var tempData = ((typeof data ) == 'string') ? eval('(' + data + ')') : data;
-                    var cookie = {};
-
-                    var cookieArr = document.cookie.split(';');
-                    cookieArr.map((data, k) => {
-                        var arr = data.split('=');
-                        var k = $.trim(arr[0]);
-                        cookie[k] = arr[1];
-                    });
 
                     if (tempData.code == 10114 || tempData.code == 10115) {//这里判断token是否过期，10114，10122代表token过期
                         window.location.href = '/login';

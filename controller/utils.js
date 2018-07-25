@@ -1,7 +1,11 @@
 var crypto = require('crypto');
 var request = require('request');
+var configs = require('./config.json');
 
 exports.encrypt = function(password, secret) {//password:需要加密的字符串，secret:加密的秘钥
+    if(!password){
+        return false;
+    }
     var cipher = crypto.createCipher('aes192', secret);
     var enc = cipher.update(password, 'utf8', 'hex'); //编码方式从utf-8转为hex;
     enc += cipher.final('hex'); //编码方式从转为hex;
@@ -10,6 +14,9 @@ exports.encrypt = function(password, secret) {//password:需要加密的字符�
 };
 
 exports.decrypt = function(data, secret) {
+    if(!data){
+        return false;
+    }
     var decipher = crypto.createDecipher('aes192', secret);
     var dec = decipher.update(data, 'hex', 'utf8'); //编码方式从hex转为utf-8;
     dec += decipher.final('utf8'); //编码方式从utf-8;
@@ -72,14 +79,17 @@ exports.postMethed = function (url, data, callback) {
 exports.getMethedToken = function(url, token, cookie, callback){
     var result = {};
 
-    if(!token || !cookie || token != cookie){
+    var c = this.getUserName(this.decrypt(cookie, configs.secret));
+    var s = this.getUserName(this.decrypt(token, configs.secret));
+
+    if(!c || !s || c != s){
         result = {
             code: 10114,
             msg: '用户认证失败'
         };
         callback(JSON.stringify(result));
         return;
-    }else if(token == cookie){
+    }else if(c == s){
         request({
             url: url,
             method: 'GET',
@@ -117,14 +127,18 @@ exports.getMethedToken = function(url, token, cookie, callback){
 //post方法，带token
 exports.postMethedToken = function(url, data, token, cookie, callback){
     var result = {};
-    if(!token || !cookie || token != cookie){
+
+    var c = this.getUserName(this.decrypt(cookie, configs.secret));
+    var s = this.getUserName(this.decrypt(token, configs.secret));
+
+    if(!s || !c || s != c){
         result = {
             code: 10114,
             msg: '用户认证失败'
         };
         callback(JSON.stringify(result));
         return;
-    }else if(token == cookie){
+    }else if(s == c){
         request({
             url: url,
             method: 'POST',
@@ -159,3 +173,17 @@ exports.postMethedToken = function(url, data, token, cookie, callback){
         return;
     }
 };
+
+//从字符串中获取用户名
+exports.getUserName = function(str){
+    if(!str){
+        return false;
+    }
+    var pos = str.indexOf('+');
+    if(pos > -1){
+        return str.substring(0, pos);
+    }
+    return false;
+};
+
+

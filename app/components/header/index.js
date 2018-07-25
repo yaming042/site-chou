@@ -350,7 +350,7 @@ export default class Header extends Component{
                             val: data.body.name
                         });
                     }else{
-                        console.log(data.msg);
+                        console.log(data.code + ' ;msg: ' + data.msg);
                     }
                 },
                 error: () => {

@@ -9,6 +9,7 @@ import UploadBox_v2 from '../piece/upload_v2';
 
 import styles from '../../style';
 import * as events from "../../Events";
+import store from '../../store';
 
 export default class Add extends Component{
     constructor(props){
@@ -52,12 +53,13 @@ export default class Add extends Component{
             let name = $("#name").val();
             let local = $("#location").val();
             let intro = $("#introduce").val();
+            let type = store.getState().search.type;
 
             $.ajax({
                 url: '/api/createProduct',
                 type: 'POST',
                 dataType: 'json',
-                data: {pname: name, plocal: local, pintro: intro},
+                data: {pname: name, plocal: local, pintro: intro, type: type},
                 success: (data) => {
                     console.log(data);
                 },

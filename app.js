@@ -27,7 +27,7 @@ app.use(session({
         path: '/',
         httpOnly: true,
         secure: false,
-        maxAge: 1000*60*60,//session一小时过期
+        maxAge: 1000*60*30,//session一小时过期
     }
 }))
 

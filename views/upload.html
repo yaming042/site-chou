@@ -47,7 +47,7 @@
                     console.log(info);
                     if(info.status == 200){
                         let src = eval('(' +info.response + ')').path;
-                        $("#img").attr("src", src);
+                        console.log(src);
                     }
 
                 },
